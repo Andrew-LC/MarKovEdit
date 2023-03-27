@@ -1,6 +1,8 @@
 /* eslint import/prefer-default-export: off */
 import { URL } from 'url';
 import path from 'path';
+import { dialog, BrowserWindow, ipcMain } from 'electron';
+import fs from 'fs';
 
 export function resolveHtmlPath(htmlFileName: string) {
   if (process.env.NODE_ENV === 'development') {
@@ -10,4 +12,25 @@ export function resolveHtmlPath(htmlFileName: string) {
     return url.href;
   }
   return `file://${path.resolve(__dirname, '../renderer/', htmlFileName)}`;
+}
+
+export function openFile(mainWindow: BrowserWindow) {
+  dialog.showOpenDialog(mainWindow, {
+    properties: ['openFile'],
+    filters: [
+      { name: 'Markdown Files', extensions: ['md'] },
+      { name: 'Org Files', extensions: ['org'] }
+    ]
+  }).then(result => {
+    console.log(result.canceled)
+    console.log(result.filePaths)
+    fs.readFile(result.filePaths[0], (err, data) => {
+      if (err) {
+        console.error(err)
+      }
+      mainWindow.webContents.send('file-content', data.toString())
+    })
+  }).catch(err => {
+    console.log(err)
+  })
 }

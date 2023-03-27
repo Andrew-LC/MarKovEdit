@@ -9,7 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
+import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -30,6 +30,7 @@ ipcMain.on('ipc-example', async (event, arg) => {
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
 });
+
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -75,7 +76,6 @@ const createWindow = async () => {
     height: 728,
     resizable: true,
     maximizable: true,
-    transparent: true,
     opacity: .96,
     vibrancy: 'under-window',
     visualEffectState: 'active',
@@ -86,8 +86,6 @@ const createWindow = async () => {
         : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
   });
-
-  //Menu.setApplicationMenu(null)
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
@@ -106,8 +104,11 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
+
+  // Menu 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
+
 
   // Open urls in the user's browser
   mainWindow.webContents.setWindowOpenHandler((edata) => {
@@ -115,10 +116,13 @@ const createWindow = async () => {
     return { action: 'deny' };
   });
 
+
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
 };
+
+
 
 
 /**
@@ -137,6 +141,22 @@ app
   .whenReady()
   .then(() => {
     createWindow();
+
+    ipcMain.on("minimizeApp", () => {
+      mainWindow?.minimize();
+    });
+    ipcMain.on("maximizeApp", () => {
+      if (mainWindow?.isMaximized()) {
+        mainWindow?.unmaximize();
+      } else {
+        mainWindow?.maximize();
+      }
+    });
+    ipcMain.on("closeApp", () => {
+      mainWindow?.close();
+    });
+
+
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
       // dock icon is clicked and there are no other windows open.

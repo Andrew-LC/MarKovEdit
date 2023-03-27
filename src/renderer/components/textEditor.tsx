@@ -5,6 +5,7 @@ import { gruvboxDark } from '@uiw/codemirror-theme-gruvbox-dark';
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { textEditorState } from '../state/global'
+import { useEffect } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 
 
@@ -19,6 +20,7 @@ export default function TextEditor() {
         <Box overflow="scroll" h="100%" w="50%" fontSize="1.2rem" >
             <CodeMirror
                 height="100%"
+                value={textState}
                 theme={gruvboxDark}
                 onChange={onChange}
                 extensions={[markdown({ base: markdownLanguage }), EditorView.lineWrapping]}

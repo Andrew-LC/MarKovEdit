@@ -30,6 +30,13 @@ contextBridge.exposeInMainWorld('myAPI', {
   }
 })
 
+contextBridge.exposeInMainWorld('fileAPI', {
+  openFileData: (callback: any) => {
+    ipcRenderer.on('file-content', callback)
+  }
+})
+
+
 contextBridge.exposeInMainWorld('electron', electronHandler);
 
 export type ElectronHandler = typeof electronHandler;
