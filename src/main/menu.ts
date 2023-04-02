@@ -5,7 +5,8 @@ import {
   BrowserWindow,
   MenuItemConstructorOptions,
 } from 'electron';
-import { openFile } from './util';
+import { openFile, saveFile } from './util';
+
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;
@@ -208,6 +209,9 @@ export default class MenuBuilder {
           {
             label: '&Save',
             accelerator: 'Ctrl+s',
+            click: () => {
+              this.mainWindow.webContents.send('save-file', 'save')
+            }
           },
           {
             label: '&Save as',

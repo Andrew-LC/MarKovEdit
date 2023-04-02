@@ -3,7 +3,9 @@ export interface IMyAPI {
 }
 
 export interface IFileAPI {
-  openFileData: () => string
+  openFileData: () => string,
+  saveFileData: (data: string) => string,
+  saveFileCommand: (callback: any) => string
 }
 
 declare global {

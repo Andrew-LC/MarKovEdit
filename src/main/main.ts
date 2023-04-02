@@ -13,7 +13,7 @@ import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
-import { resolveHtmlPath } from './util';
+import { resolveHtmlPath, saveFile } from './util';
 
 class AppUpdater {
   constructor() {
@@ -30,6 +30,11 @@ ipcMain.on('ipc-example', async (event, arg) => {
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
 });
+
+
+ipcMain.on('save-file-command', async (event, data) => {
+  saveFile(data)
+})
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -100,6 +105,10 @@ const createWindow = async () => {
     }
   });
 
+  ipcMain.on('save-file-command', async (event, arg) => {
+    console.log(arg)
+  })
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -108,6 +117,7 @@ const createWindow = async () => {
   // Menu 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
+  //mainWindow.setMenuBarVisibility(false)
 
 
   // Open urls in the user's browser
@@ -141,7 +151,6 @@ app
   .whenReady()
   .then(() => {
     createWindow();
-
     ipcMain.on("minimizeApp", () => {
       mainWindow?.minimize();
     });

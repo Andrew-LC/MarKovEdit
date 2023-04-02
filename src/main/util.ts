@@ -25,12 +25,24 @@ export function openFile(mainWindow: BrowserWindow) {
     console.log(result.canceled)
     console.log(result.filePaths)
     fs.readFile(result.filePaths[0], (err, data) => {
+      const newdata: string = data.toString();
       if (err) {
         console.error(err)
       }
-      mainWindow.webContents.send('file-content', data.toString())
+      mainWindow.webContents.send('file-data', newdata);
     })
   }).catch(err => {
     console.log(err)
   })
+}
+
+
+export async function saveFile(data: string) {
+  const filepath = await dialog.showSaveDialog({
+    filters: [
+      { name: 'Markdown Files', extensions: ['md'] },
+      { name: 'Org Files', extensions: ['org'] }
+    ]
+  })
+  console.log(filepath)
 }

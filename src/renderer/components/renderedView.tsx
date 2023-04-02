@@ -11,7 +11,6 @@ export default function RenderedView() {
     const [currentValue, setCurrentValue] = useState("");
 
     useEffect(() => {
-        console.log(textState)
         try {
             if (textState) {
                 convertToHTML(textState).then(response => {
