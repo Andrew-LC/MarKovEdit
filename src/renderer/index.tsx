@@ -1,5 +1,4 @@
 import { createRoot } from 'react-dom/client';
-import { IpcMainEvent } from 'electron';
 import App from './App';
 
 const container = document.getElementById('root')!;
@@ -12,4 +11,3 @@ window.electron.ipcRenderer.once('ipc-example', (arg) => {
     console.log(arg);
 });
 window.electron.ipcRenderer.sendMessage('ipc-example', ['ping']);
-window.fileAPI.saveFileData('Hello World')

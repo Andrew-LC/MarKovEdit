@@ -26,13 +26,14 @@ class AppUpdater {
 let mainWindow: BrowserWindow | null = null;
 
 ipcMain.on('ipc-example', async (event, arg) => {
-  const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
+  const msgTemplate = (pingPong: string) => `IPC testdata: ${pingPong}`;
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
 
-ipcMain.on('save-file-command', async (event, data) => {
+ipcMain.on('save-file-command', async (_event, data) => {
+  console.log(data)
   saveFile(data)
 })
 

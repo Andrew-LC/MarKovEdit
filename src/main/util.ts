@@ -37,12 +37,18 @@ export function openFile(mainWindow: BrowserWindow) {
 }
 
 
-export async function saveFile(data: string) {
-  const filepath = await dialog.showSaveDialog({
+export function saveFile(data: string) {
+  dialog.showSaveDialog({
     filters: [
       { name: 'Markdown Files', extensions: ['md'] },
       { name: 'Org Files', extensions: ['org'] }
     ]
+  }).then(result => {
+    console.log(result.canceled)
+    console.log(result.filePath)
+    console.log(data)
+    fs.writeFile(`${result.filePath}`, data, (err) => {
+      if (err) throw err;
+    });
   })
-  console.log(filepath)
 }

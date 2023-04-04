@@ -210,7 +210,7 @@ export default class MenuBuilder {
             label: '&Save',
             accelerator: 'Ctrl+s',
             click: () => {
-              this.mainWindow.webContents.send('save-file', 'save')
+              this.mainWindow.webContents.send('save-file')
             }
           },
           {

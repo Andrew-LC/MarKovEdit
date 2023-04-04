@@ -22,6 +22,7 @@ export default function RenderedView() {
         }
     }, [textState])
 
+
     return (
         <Box className="markdown-body" w="50%" h="100%" resize="horizontal" p="2" pt="0" color="white" overflow="scroll" >
             {parse(currentValue)}
