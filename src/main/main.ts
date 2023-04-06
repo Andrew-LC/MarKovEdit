@@ -33,7 +33,6 @@ ipcMain.on('ipc-example', async (event, arg) => {
 
 
 ipcMain.on('save-file-command', async (_event, data) => {
-  console.log(data)
   saveFile(data)
 })
 

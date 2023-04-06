@@ -33,6 +33,10 @@ contextBridge.exposeInMainWorld('myAPI', {
 contextBridge.exposeInMainWorld('fileAPI', {
   openFileData: (callback: any) => {
     ipcRenderer.on('file-data', callback)
+
+    return () => {
+      ipcRenderer.removeAllListeners('file-data')
+    }
   },
   saveFileData: (data: string) => {
     ipcRenderer.send('save-file-command', data)
