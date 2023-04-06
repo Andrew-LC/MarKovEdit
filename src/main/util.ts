@@ -29,7 +29,6 @@ export function openFile(mainWindow: BrowserWindow) {
       if (err) {
         console.error(err)
       }
-      console.log(typeof newdata)
       mainWindow.webContents.send('file-data', newdata);
     })
   }).catch(err => {
@@ -52,4 +51,8 @@ export function saveFile(data: string) {
       if (err) throw err;
     });
   })
+}
+
+export function convertPathToAbsolute(url: string) {
+  return path.resolve(url)
 }

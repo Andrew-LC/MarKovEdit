@@ -8,9 +8,14 @@ export interface IFileAPI {
   saveFileCommand: (callback: any) => string
 }
 
+export interface IutilAPI {
+  convertPathToAbsolute: (url: string) => string,
+}
+
 declare global {
   interface Window {
     myAPI: IMyAPI,
-    fileAPI: IFileAPI
+    fileAPI: IFileAPI,
+    utilAPI: IutilAPI
   }
 }

@@ -40,7 +40,10 @@ export default function TextEditor() {
                 value={textState}
                 theme={gruvboxDark}
                 onChange={onChange}
-                extensions={[markdown({ base: markdownLanguage }), EditorView.lineWrapping]}
+                extensions={[
+                    markdown({ base: markdownLanguage }),
+                    EditorView.lineWrapping,
+                ]}
             />
         </Box>
     );

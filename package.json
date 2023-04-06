@@ -96,6 +96,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.5.3",
+    "@codemirror/gutter": "^0.19.9",
     "@codemirror/lang-markdown": "^6.1.0",
     "@codemirror/view": "^6.9.3",
     "@emotion/react": "^11.10.6",
@@ -115,6 +116,7 @@
     "recoil": "^0.7.7",
     "rehype-sanitize": "^5.0.1",
     "rehype-stringify": "^9.0.3",
+    "rehype-urls": "^1.1.1",
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
     "unified": "^10.1.2"
