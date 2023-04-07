@@ -44,6 +44,9 @@ contextBridge.exposeInMainWorld('fileAPI', {
   saveFileData: (data: any) => {
     ipcRenderer.send('save-file-command', data)
   },
+  saveAsFileCommand: (callback: any) => {
+    ipcRenderer.on('save-as-file', callback)
+  },
   saveFileCommand: (callback: any) => {
     ipcRenderer.on('save-file', callback)
 

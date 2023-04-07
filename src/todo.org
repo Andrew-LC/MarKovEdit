@@ -1,5 +1,0 @@
-* TODO
-- What is this ?
-  This is a simple way of me tracking of new features to add into the app.
-
-** TODO: Add a ipc from main to renderer with a relay back

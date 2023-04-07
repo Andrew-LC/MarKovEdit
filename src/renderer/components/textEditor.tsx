@@ -34,6 +34,11 @@ export default function TextEditor() {
             const data = { 'filename': file, 'data': currentdata }
             window.fileAPI.saveFileData(data)
         })
+
+        window.fileAPI.saveAsFileCommand(() => {
+            const data = { 'filename': '', 'data': currentdata }
+            window.fileAPI.saveFileData(data)
+        })
     }, [])
 
 

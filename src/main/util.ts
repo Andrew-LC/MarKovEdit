@@ -22,8 +22,9 @@ export function openFile(mainWindow: BrowserWindow) {
       { name: 'Org Files', extensions: ['org'] }
     ]
   }).then(result => {
-    console.log(result.canceled)
-    console.log(result.filePaths)
+    if (result.canceled) {
+      console.log("Canceled !")
+    }
     fs.readFile(result.filePaths[0], (err, data) => {
       const newdata: object = { 'filename': result.filePaths[0], 'data': data.toString() };
       if (err) {
@@ -52,10 +53,12 @@ export function saveFile(data: any) {
         if (err) throw err;
       });
     })
+  } else {
+    fs.writeFile(`${data.filename}`, data.data.toString(), (err) => {
+      if (err) throw err;
+    });
+
   }
-  fs.writeFile(`${data.filename}`, data.data.toString(), (err) => {
-    if (err) throw err;
-  });
 }
 
 export function convertPathToAbsolute(url: string) {

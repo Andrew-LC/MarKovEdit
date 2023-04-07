@@ -216,6 +216,9 @@ export default class MenuBuilder {
           {
             label: '&Save as',
             accelerator: 'Ctrl+Shift+s',
+            click: () => {
+              this.mainWindow.webContents.send('save-as-file')
+            }
           },
           {
             label: '&Close',
@@ -278,23 +281,11 @@ export default class MenuBuilder {
             },
           },
           {
-            label: 'Documentation',
+            label: 'Source Code',
             click() {
               shell.openExternal(
-                'https://github.com/electron/electron/tree/main/docs#readme'
+                'https://github.com/Andrew-LC/MarKovEdit'
               );
-            },
-          },
-          {
-            label: 'Community Discussions',
-            click() {
-              shell.openExternal('https://www.electronjs.org/community');
-            },
-          },
-          {
-            label: 'Search Issues',
-            click() {
-              shell.openExternal('https://github.com/electron/electron/issues');
             },
           },
         ],
