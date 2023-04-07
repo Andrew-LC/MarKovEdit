@@ -2,13 +2,14 @@ import { Box } from '@chakra-ui/react';
 import { EditorView } from '@codemirror/view';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
 import { gruvboxDark } from '@uiw/codemirror-theme-gruvbox-dark';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IpcRendererEvent } from 'electron';
 import { useRecoilState } from 'recoil';
 import { textEditorState } from '../state/global'
 import CodeMirror from '@uiw/react-codemirror';
 
 let currentdata = "";
+let file = "";
 
 export default function TextEditor() {
     const [textState, setTextState] = useRecoilState(textEditorState)
@@ -19,16 +20,19 @@ export default function TextEditor() {
     }, [])
 
     useEffect(() => {
-        window.fileAPI.openFileData((event: IpcRendererEvent, data: string) => {
+        window.fileAPI.openFileData((event: IpcRendererEvent, data: object) => {
             try {
-                setTextState(data)
+                setTextState(data.data)
+                currentdata = data.data
+                file = data.filename
             } catch (err) {
                 console.log(err)
             }
         })
 
         window.fileAPI.saveFileCommand(() => {
-            window.fileAPI.saveFileData(currentdata)
+            const data = { 'filename': file, 'data': currentdata }
+            window.fileAPI.saveFileData(data)
         })
     }, [])
 

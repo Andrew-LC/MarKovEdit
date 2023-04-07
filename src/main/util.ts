@@ -25,7 +25,7 @@ export function openFile(mainWindow: BrowserWindow) {
     console.log(result.canceled)
     console.log(result.filePaths)
     fs.readFile(result.filePaths[0], (err, data) => {
-      const newdata: string = data.toString();
+      const newdata: object = { 'filename': result.filePaths[0], 'data': data.toString() };
       if (err) {
         console.error(err)
       }
@@ -37,20 +37,25 @@ export function openFile(mainWindow: BrowserWindow) {
 }
 
 
-export function saveFile(data: string) {
-  dialog.showSaveDialog({
-    filters: [
-      { name: 'Markdown Files', extensions: ['md'] },
-      { name: 'Org Files', extensions: ['org'] }
-    ]
-  }).then(result => {
-    console.log(result.canceled)
-    console.log(result.filePath)
-    console.log(data)
-    fs.writeFile(`${result.filePath}`, data.toString(), (err) => {
-      if (err) throw err;
-    });
-  })
+export function saveFile(data: any) {
+  if (!data.filename) {
+    dialog.showSaveDialog({
+      filters: [
+        { name: 'Markdown Files', extensions: ['md'] },
+        { name: 'Org Files', extensions: ['org'] }
+      ]
+    }).then(result => {
+      console.log(result.canceled)
+      console.log(result.filePath)
+      console.log(data)
+      fs.writeFile(`${result.filePath}`, data.data.toString(), (err) => {
+        if (err) throw err;
+      });
+    })
+  }
+  fs.writeFile(`${data.filename}`, data.data.toString(), (err) => {
+    if (err) throw err;
+  });
 }
 
 export function convertPathToAbsolute(url: string) {

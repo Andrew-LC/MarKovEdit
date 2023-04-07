@@ -1,7 +1,8 @@
 // Disable no-unused-vars, broken for spread args
 /* eslint no-unused-vars: off */
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
-import { convertPathToAbsolute } from './util';
+import path from 'path'
+import { app } from 'electron'
 
 export type Channels = 'ipc-example';
 
@@ -31,9 +32,6 @@ contextBridge.exposeInMainWorld('myAPI', {
   }
 })
 
-contextBridge.exposeInMainWorld('utilAPI', {
-  convertPathToAbsolute
-})
 
 contextBridge.exposeInMainWorld('fileAPI', {
   openFileData: (callback: any) => {
@@ -43,7 +41,7 @@ contextBridge.exposeInMainWorld('fileAPI', {
       ipcRenderer.removeAllListeners('file-data')
     }
   },
-  saveFileData: (data: string) => {
+  saveFileData: (data: any) => {
     ipcRenderer.send('save-file-command', data)
   },
   saveFileCommand: (callback: any) => {
@@ -52,7 +50,7 @@ contextBridge.exposeInMainWorld('fileAPI', {
     return () => {
       ipcRenderer.removeAllListeners('save-file')
     }
-  }
+  },
 })
 
 
