@@ -26,7 +26,8 @@ export function openFile(mainWindow: BrowserWindow) {
       console.log("Canceled !")
     }
     fs.readFile(result.filePaths[0], (err, data) => {
-      const newdata: object = { 'filename': result.filePaths[0], 'data': data.toString() };
+      // returns data = { filename, data, extension type }
+      const newdata: object = { 'filename': result.filePaths[0], 'data': data.toString(), 'extension': path.extname(result.filePaths[0]) };
       if (err) {
         console.error(err)
       }

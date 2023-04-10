@@ -5,4 +5,9 @@ const textEditorState = atom({
   default: ''
 })
 
-export { textEditorState }
+const fileExtensionState = atom({
+  key: 'fileExtensionState',
+  default: ''
+})
+
+export { textEditorState, fileExtensionState }

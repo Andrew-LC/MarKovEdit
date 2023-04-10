@@ -5,7 +5,7 @@ import { gruvboxDark } from '@uiw/codemirror-theme-gruvbox-dark';
 import { useCallback, useEffect, useState } from 'react';
 import { IpcRendererEvent } from 'electron';
 import { useRecoilState } from 'recoil';
-import { textEditorState } from '../state/global'
+import { textEditorState, fileExtensionState } from '../state/global'
 import CodeMirror from '@uiw/react-codemirror';
 
 let currentdata = "";
@@ -13,6 +13,7 @@ let file = "";
 
 export default function TextEditor() {
     const [textState, setTextState] = useRecoilState(textEditorState)
+    const [fileExtension, setFileExtension] = useRecoilState(fileExtensionState)
 
     const onChange = useCallback((value: string) => {
         setTextState(value)
@@ -25,6 +26,7 @@ export default function TextEditor() {
                 setTextState(data.data)
                 currentdata = data.data
                 file = data.filename
+                setFileExtension(data.extension)
             } catch (err) {
                 console.log(err)
             }
