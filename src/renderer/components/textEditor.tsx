@@ -2,11 +2,12 @@ import { Box } from '@chakra-ui/react';
 import { EditorView } from '@codemirror/view';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
 import { gruvboxDark } from '@uiw/codemirror-theme-gruvbox-dark';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { IpcRendererEvent } from 'electron';
 import { useRecoilState } from 'recoil';
 import { textEditorState, fileExtensionState } from '../state/global'
 import CodeMirror from '@uiw/react-codemirror';
+import path from 'path';
 
 let currentdata = "";
 let file = "";

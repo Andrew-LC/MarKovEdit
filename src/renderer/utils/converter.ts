@@ -13,6 +13,7 @@ async function convertMDtoHTML(value: string) {
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypeSanitize)
+    .use(highlight)
     .use(rehypeStringify)
     .process(value)
 
@@ -24,6 +25,7 @@ async function convertORGtoHTML(value: string) {
   const file = await unified()
     .use(parse)
     .use(uniorg2rehype)
+    .use(katex)
     .use(rehypeStringify)
     .process(value)
 

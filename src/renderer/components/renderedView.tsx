@@ -11,6 +11,7 @@ export default function RenderedView() {
     const fileState = useRecoilValue(fileExtensionState)
     const [currentValue, setCurrentValue] = useState("");
 
+    // By default it will render Markdown
     useEffect(() => {
         try {
             if (textState && fileState == '.md') {
@@ -23,6 +24,11 @@ export default function RenderedView() {
                 convertORGtoHTML(textState).then(response => {
                     setCurrentValue(response)
                 })
+            } else {
+                setCurrentValue("")
+                convertMDtoHTML(textState).then(response => {
+                    setCurrentValue(response)
+                })
             }
         } catch (err) {
             console.log(err)
@@ -32,7 +38,7 @@ export default function RenderedView() {
 
     return (
         <Box className="markdown-body" w="50%" h="100%" resize="horizontal" p="2" pt="0" color="white" overflow="scroll" >
-            {currentValue ? parse(currentValue) : <p>No text here yet !</p>}
+            {parse(currentValue)}
         </Box>
     );
 }
