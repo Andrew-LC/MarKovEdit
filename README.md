@@ -1,12 +1,6 @@
-# MarKovEditor
 
-![](./public/logo.jpg)
-
-A minimal text editor for Markdown and Org Notes.
-
-## Tech Stack:
-- [Electron JS](https://www.electronjs.org/)
-- [React JS](https://react.dev/)
-- [Electron-React-Boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
-- [Chakri UI](https://chakra-ui.com/)
-- [Recoil JS](https://recoiljs.org/))
+## Welcome To MarkOvEditor
+---
+[](../../../public/image.png)
+- This is a simple Markdown and Emacs Org mode editor and viewer capable of editing and operating file commands.
+- By default it uses markdown renderer when the application is without a saved file.
