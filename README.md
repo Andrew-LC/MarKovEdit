@@ -1,6 +1,6 @@
 # MarKovEditor
 
-![](./public/logo.png)
+![](./public/logo.jpg)
 
 A minimal text editor for Markdown and Org Notes.
 
