@@ -1,6 +1,6 @@
 # MarKovEditor
 
-![](./public/image.png)
+![](./public/logo.png)
 
 A minimal text editor for Markdown and Org Notes.
 
@@ -9,4 +9,4 @@ A minimal text editor for Markdown and Org Notes.
 - [React JS](https://react.dev/)
 - [Electron-React-Boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
 - [Chakri UI](https://chakra-ui.com/)
-- [Recoil JS](https://recoiljs.org/)
+- [Recoil JS](https://recoiljs.org/))
