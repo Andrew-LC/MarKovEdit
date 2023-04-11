@@ -31,9 +31,8 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
-
 ipcMain.on('save-file-command', async (_event, data) => {
-  saveFile(data)
+  saveFile(mainWindow, data)
 })
 
 
@@ -105,13 +104,13 @@ const createWindow = async () => {
     }
   });
 
-  ipcMain.on('save-file-command', async (event, arg) => {
-    console.log(arg)
-  })
 
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+
+
 
 
   // Menu 
@@ -131,8 +130,6 @@ const createWindow = async () => {
   // eslint-disable-next-line
   new AppUpdater();
 };
-
-
 
 
 /**

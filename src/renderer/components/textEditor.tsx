@@ -42,6 +42,16 @@ export default function TextEditor() {
             const data = { 'filename': '', 'data': currentdata }
             window.fileAPI.saveFileData(data)
         })
+
+        window.fileAPI.fileFormat((_event: IpcRendererEvent, data: string) => {
+            setFileExtension(data)
+        })
+
+        window.fileAPI.newFile((_event: IpcRendererEvent, data: string) => {
+            file = ""
+            currentdata = ""
+            setTextState("")
+        })
     }, [])
 
 

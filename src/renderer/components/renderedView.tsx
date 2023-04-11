@@ -33,7 +33,7 @@ export default function RenderedView() {
         } catch (err) {
             console.log(err)
         }
-    }, [textState])
+    }, [textState, fileState])
 
 
     return (

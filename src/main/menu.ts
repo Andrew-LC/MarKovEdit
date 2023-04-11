@@ -207,6 +207,13 @@ export default class MenuBuilder {
             }
           },
           {
+            label: 'New file',
+            accelerator: 'Ctrl+n',
+            click: () => {
+              this.mainWindow.webContents.send('new-file')
+            }
+          },
+          {
             label: '&Save',
             accelerator: 'Ctrl+s',
             click: () => {

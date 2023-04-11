@@ -7,6 +7,8 @@ export interface IFileAPI {
   saveFileData: (data: any) => any,
   saveAsFileCommand: (callback: any) => string,
   saveFileCommand: (callback: any) => string,
+  fileFormat: (callback: any) => string,
+  newFile: (callback: any) => string,
 }
 
 

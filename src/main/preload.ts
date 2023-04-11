@@ -54,6 +54,20 @@ contextBridge.exposeInMainWorld('fileAPI', {
       ipcRenderer.removeAllListeners('save-file')
     }
   },
+  fileFormat: (callback: any) => {
+    ipcRenderer.on('file-format', callback)
+
+    return () => {
+      ipcRenderer.removeAllListeners('file-format')
+    }
+  },
+  newFile: (callback: any) => {
+    ipcRenderer.on('new-file', callback)
+
+    return () => {
+      ipcRenderer.removeAllListeners('file-format')
+    }
+  }
 })
 
 

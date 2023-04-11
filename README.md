@@ -1,6 +1,11 @@
 
-## Welcome To MarkOvEditor
+## MarkOvEditor
 ---
-[](../../../public/image.png)
-- This is a simple Markdown and Emacs Org mode editor and viewer capable of editing and operating file commands.
-- By default it uses markdown renderer when the application is without a saved file.
+![](./public/bg.png)
+
+Technolgies used:
+- Electron js
+- React js
+- Recoil js
+- Chakra UI
+- Unified System 

@@ -1,4 +1,4 @@
-import { unified } from 'unified'
+import { unified, Transformer } from 'unified'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import rehypeSanitize from 'rehype-sanitize'
@@ -6,19 +6,21 @@ import rehypeStringify from 'rehype-stringify'
 import parse from 'uniorg-parse';
 import uniorg2rehype from 'uniorg-rehype';
 import katex from 'rehype-katex';
-import highlight from 'rehype-highlight';
+import rehypeHighlight from 'rehype-highlight'
+
 
 async function convertMDtoHTML(value: string) {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypeSanitize)
-    .use(highlight)
+    .use(rehypeHighlight)
     .use(rehypeStringify)
     .process(value)
 
   return String(file)
 }
+
 
 
 async function convertORGtoHTML(value: string) {

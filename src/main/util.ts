@@ -39,7 +39,7 @@ export function openFile(mainWindow: BrowserWindow) {
 }
 
 
-export function saveFile(data: any) {
+export function saveFile(mainWindow: BrowserWindow, data: any) {
   if (!data.filename) {
     dialog.showSaveDialog({
       filters: [
@@ -53,12 +53,13 @@ export function saveFile(data: any) {
       fs.writeFile(`${result.filePath}`, data.data.toString(), (err) => {
         if (err) throw err;
       });
+      mainWindow.webContents.send('file-format', path.extname(result.filePath))
     })
   } else {
     fs.writeFile(`${data.filename}`, data.data.toString(), (err) => {
       if (err) throw err;
     });
-
+    mainWindow.webContents.send('file-format', path.extname(data.filename))
   }
 }
 
