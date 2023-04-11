@@ -1,6 +1,5 @@
-
 ## MarkOvEditor
----
+
 ![](./public/bg.png)
 
 Technolgies used:
