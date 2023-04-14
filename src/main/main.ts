@@ -110,9 +110,6 @@ const createWindow = async () => {
   });
 
 
-
-
-
   // Menu 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();

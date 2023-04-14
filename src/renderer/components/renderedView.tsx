@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { convertMDtoHTML, convertORGtoHTML } from '../utils/converter';
 import parse from "html-react-parser";
 import "../editor.css"
-//import "../../../node_modules/highlight.js/styles/stackoverflow-dark.css"
 import "../gruvbox-hljs.css"
 
 

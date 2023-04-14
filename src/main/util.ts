@@ -57,6 +57,7 @@ export function saveFile(mainWindow: BrowserWindow, data: any) {
     })
   } else {
     fs.writeFile(`${data.filename}`, data.data.toString(), (err) => {
+      console.log(data.filename)
       if (err) throw err;
     });
     mainWindow.webContents.send('file-format', path.extname(data.filename))
