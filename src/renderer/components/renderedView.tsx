@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react';
 import { convertMDtoHTML, convertORGtoHTML } from '../utils/converter';
 import parse from "html-react-parser";
 import "../editor.css"
+//import "../../../node_modules/highlight.js/styles/stackoverflow-dark.css"
+import "../gruvbox-hljs.css"
+
 
 export default function RenderedView() {
     const textState = useRecoilValue(textEditorState)
@@ -35,9 +38,8 @@ export default function RenderedView() {
         }
     }, [textState, fileState])
 
-
     return (
-        <Box className="markdown-body" w="50%" h="100%" resize="horizontal" p="2" pt="0" color="white" overflow="scroll" >
+        <Box className="markdown-body left" w="50%" h="100%" resize="horizontal" p="2" ml="2" pl="3" pr="3" pt="0" color="white" overflow="scroll" >
             {parse(currentValue)}
         </Box>
     );
