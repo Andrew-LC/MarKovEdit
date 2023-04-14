@@ -29,6 +29,7 @@ async function convertORGtoHTML(value: string) {
   const file = await unified()
     .use(parse)
     .use(uniorg2rehype)
+    .use(rehypeHighlight, { ignoreMissing: true, detect: true })
     .use(katex)
     .use(rehypeStringify)
     .process(value)

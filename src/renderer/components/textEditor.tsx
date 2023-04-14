@@ -66,6 +66,11 @@ export default function TextEditor() {
                     markdown({ base: markdownLanguage }),
                     EditorView.lineWrapping,
                 ]}
+                basicSetup={{
+                    lineNumbers: false,
+                    autocompletion: true,
+                    drawSelection: true
+                }}
             />
         </Box>
     );

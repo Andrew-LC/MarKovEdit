@@ -80,7 +80,7 @@ const createWindow = async () => {
     height: 728,
     resizable: true,
     maximizable: true,
-    opacity: .96,
+    opacity: .97,
     vibrancy: 'under-window',
     visualEffectState: 'active',
     icon: getAssetPath('icon.png'),
