@@ -13,4 +13,4 @@ Technolgies used:
 
 ### Todo:
 
-- [  ] Add local image support
+- [ ] Add local image support
