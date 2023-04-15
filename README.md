@@ -17,7 +17,7 @@ This app was inspired by [craftzdog markdown editor tutorial](https://github.com
 
 **How to use the application:**
 
----
+
 
 - The application uses markdown by default if the file isn't saved.
 - saving the file enables the user to change the compiler used. eg: saving as ```.org``` allows one to use the org compiler and ```.md``` uses the markdown to compile it to html.
@@ -25,7 +25,7 @@ This app was inspired by [craftzdog markdown editor tutorial](https://github.com
 
 **What I learned throughout this project**:
 
----
+
 
 - How unified js converts markdown into html
 - AST tree of markdown and how the compiler works.
@@ -34,6 +34,6 @@ This app was inspired by [craftzdog markdown editor tutorial](https://github.com
 
 ### Todo:
 
----
+
 
 - [ ] Add local image support
