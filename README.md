@@ -33,7 +33,5 @@ This app was inspired by [craftzdog markdown editor tutorial](https://github.com
   
 
 ### Todo:
-
---
-
+---
 - [ ] Add local image support
