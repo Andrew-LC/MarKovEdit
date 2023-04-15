@@ -7,10 +7,15 @@ import { IpcRendererEvent } from 'electron';
 import { useRecoilState } from 'recoil';
 import { textEditorState, fileExtensionState } from '../state/global'
 import CodeMirror from '@uiw/react-codemirror';
-import path from 'path';
 
 let currentdata = "";
 let file = "";
+
+interface fileObject {
+    data: string,
+    filename: string,
+    extension: string
+}
 
 export default function TextEditor() {
     const [textState, setTextState] = useRecoilState(textEditorState)
@@ -22,7 +27,7 @@ export default function TextEditor() {
     }, [])
 
     useEffect(() => {
-        window.fileAPI.openFileData((event: IpcRendererEvent, data: object) => {
+        window.fileAPI.openFileData((event: IpcRendererEvent, data: fileObject) => {
             try {
                 setTextState(data.data)
                 currentdata = data.data

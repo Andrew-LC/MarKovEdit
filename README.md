@@ -1,6 +1,6 @@
 ## MarkOvEditor
 
-![](./public/app.png)
+![](./public/background.png)
 
 MarkOvEditor is a simplistic markdown and emacs org mode editor with a viewer to see the changes.
 
